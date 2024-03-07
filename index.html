@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="angularJsDemo">
+    <head>
+        <meta charset="UTF-8">
+        <title>AngularJS Demo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<div ng-controller="postController" class="table-widget">
+			<table>
+				<caption>
+					List Posts
+					<span class="table-row-count">
+                        <button type="button" ng-click="addPost()">Add Post</button>
+                    </span>
+                    <span class="table-row-count">
+                        <input type="search" placeholder="search post" ng-model="searchKey" ng-change="searchPost()">
+                    </span>
+				</caption> 
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Title</th>
+						<th>Body</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="post in posts">
+                        <td>
+                            <span>
+                                <span>
+                                    {{ post.id }}
+                                </span>
+                            </span>
+                        </td>
+                        <td>
+                            <span>
+                                {{ post.title }}
+                            </span>
+                        </td>
+                        <td>{{ post.body }}</td>
+                        <td>
+                            <span class="actions">
+                                <button type="button" ng-click="edit(post)">Edit</button>
+                                <button type="button" ng-click="remove(post)">Remove</button>
+                            </span>        
+                        </td>
+                    </tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="4">
+							<ul class="pagination">
+								<li ng-repeat="item in listPagination">
+                                    <a style="cursor: pointer;" class="{{item.active ? 'active' : ''}}" title="page {{ item.page }}" ng-click="toPage(item.page)">{{ item.page }}</a>
+                                </li>
+							</ul>
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <form>
+                        <label for="">Title</label>
+                        <input type="text" ng-model="currentEditPost.title">
+                        </br>
+                        <label for="">Body</label>
+                        <textarea rows="5" ng-model="currentEditPost.body"></textarea>
+                        <div>
+                            <button id="save-button" class="button--primary" type="submit" ng-click="save()">Save</button>
+                            <button id="cancel-button" class="button--primary" type="submit" ng-click="cancel()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
+
+
+
