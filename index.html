@@ -71,7 +71,7 @@
                         <label for="">Body</label>
                         <textarea rows="5" ng-model="currentEditPost.body"></textarea>
                         <div>
-                            <button id="save-button" class="button--primary" type="submit" ng-click="save()">Save</button>
+                            <button id="save-button" class="button--primary" type="submit" ng-click="save()" ng-disabled="isSaving">Save</button>
                             <button id="cancel-button" class="button--primary" type="submit" ng-click="cancel()">Cancel</button>
                         </div>
                     </form>
